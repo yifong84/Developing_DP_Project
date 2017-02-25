@@ -1,0 +1,10 @@
+VCUrl<-getURL("http://opendata.socrata.com/api/views/6754-cr6t/rows.csv?accessType=DOWNLOAD")
+VCINV <- read.csv(text=VCUrl,na.strings = c("","NA"))
+
+VCINV <- na.omit(VCINV)
+VCINV$Funding.Year <- substring(VCINV$Funding.Date,7,10)
+VCINV$Funding.Month <- substring(VCINV$Funding.Date,1,2)
+MinFY<- as.numeric(min(VCINV$Funding.Year))
+MaxFY<- as.numeric(max(VCINV$Funding.Year))
+MinFM<- as.numeric(min(VCINV$Funding.Month))
+MaxFM<- as.numeric(max(VCINV$Funding.Month))
